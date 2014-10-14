@@ -125,6 +125,12 @@ namespace Dynamo.UI.Controls
                 ClickAction = StartPageListItem.Action.RegularCommand
             });
 
+            fileOperations.Add(new StartPageListItem("Custom Node", "icon-customnode.png")
+            {
+                ContextData = ButtonNames.NewCustomNodeWorkspace,
+                ClickAction = StartPageListItem.Action.RegularCommand
+            });
+
             fileOperations.Add(new StartPageListItem("Open", "icon-open.png")
             {
                 ContextData = ButtonNames.OpenWorkspace,
@@ -342,6 +348,11 @@ namespace Dynamo.UI.Controls
                 case ButtonNames.OpenWorkspace:
                     dvm.ShowOpenDialogAndOpenResultCommand.Execute(null);
                     break;
+                    
+                case ButtonNames.NewCustomNodeWorkspace:
+                    dvm.ShowNewFunctionDialogCommand.Execute(null);
+                    dvm.ShowStartPage = false;
+                    break;
 
                 default:
                     throw new ArgumentException(
@@ -375,6 +386,7 @@ namespace Dynamo.UI.Controls
     struct ButtonNames
     {
         public const string NewWorkspace = "NewWorkspace";
+        public const string NewCustomNodeWorkspace = "NewCustomNodeWorkspace";
         public const string OpenWorkspace = "OpenWorkspace";
     }
 
